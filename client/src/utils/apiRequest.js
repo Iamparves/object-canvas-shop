@@ -26,3 +26,11 @@ export const addEmployee = async (newEmployee) => {
   const data = await response.json();
   return data;
 };
+
+export const deleteEmployee = async (id) => {
+  const response = await fetch(`${baseUri}/employees/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  return data;
+};

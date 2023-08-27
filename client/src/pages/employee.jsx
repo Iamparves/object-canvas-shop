@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import EmployeeRow from "../components/EmployeeRow";
-import { getEmployees } from "../utils/apiRequest";
+import { deleteEmployee, getEmployees } from "../utils/apiRequest";
 
 const Employee = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +20,15 @@ const Employee = () => {
     }
 
     setIsLoading(false);
+  };
+
+  const onDeleteEmployee = async (employeeId) => {
+    try {
+      await deleteEmployee(employeeId);
+      loadAllEmployees();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -69,6 +78,7 @@ const Employee = () => {
                       key={employee.employee_id}
                       index={index + 1}
                       employee={employee}
+                      onDeleteEmployee={onDeleteEmployee}
                     />
                   ))}
               </tbody>

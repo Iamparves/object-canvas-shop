@@ -37,7 +37,7 @@ const EmployeeForm = () => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3 className="mb-5 text-lg font-semibold text-dark-800">
-          Add new Employee
+          {employeeId ? "Edit Existing Employee" : "Add new Employee"}
         </h3>
         <div className="mb-5 flex flex-col gap-1">
           <label htmlFor="name" className="text-sm font-medium text-gray-400">
