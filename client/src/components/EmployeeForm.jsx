@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { addEmployee, getEmployeeById } from "../utils/apiRequest";
+import {
+  addEmployee,
+  getEmployeeById,
+  updateEmployee,
+} from "../utils/apiRequest";
 
 const EmployeeForm = () => {
   const { employeeId } = useParams();
@@ -27,7 +31,8 @@ const EmployeeForm = () => {
   const onSubmit = async (data) => {
     if (!employeeId) {
       const result = await addEmployee(data);
-      console.log(result);
+    } else {
+      const result = await updateEmployee(employeeId, data);
     }
 
     navigate("..", { state: { reload: true } });

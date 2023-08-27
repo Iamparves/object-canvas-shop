@@ -34,3 +34,15 @@ export const deleteEmployee = async (id) => {
   const data = await response.json();
   return data;
 };
+
+export const updateEmployee = async (id, updatedEmployee) => {
+  const response = await fetch(`${baseUri}/employees/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedEmployee),
+  });
+  const data = await response.json();
+  return data;
+};
