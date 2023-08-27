@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -10,6 +10,7 @@ import {
 const EmployeeForm = () => {
   const { employeeId } = useParams();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -18,8 +19,10 @@ const EmployeeForm = () => {
   } = useForm({
     defaultValues: async () => {
       if (employeeId) {
+        setIsLoading(true);
         const data = await getEmployeeById(employeeId);
         const { name, email_address, contact_no } = data;
+        setIsLoading(false);
 
         return { name, email_address, contact_no };
       } else {
@@ -29,6 +32,7 @@ const EmployeeForm = () => {
   });
 
   const onSubmit = async (data) => {
+    setIsLoading(true);
     if (!employeeId) {
       const result = await addEmployee(data);
     } else {
@@ -54,6 +58,7 @@ const EmployeeForm = () => {
             type="text"
             {...register("name", { required: true })}
             placeholder="Enter employee name"
+            disabled={isLoading}
           />
           {errors.name && (
             <p className="text-sm text-red-500">Name is required</p>
@@ -76,6 +81,7 @@ const EmployeeForm = () => {
               maxLength: 11,
             })}
             placeholder="Enter employee contact no."
+            disabled={isLoading}
           />
           {errors.contact_no?.type === "required" && (
             <p className="text-sm text-red-500">Contact no. is required</p>
@@ -99,6 +105,7 @@ const EmployeeForm = () => {
               pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
             })}
             placeholder="Enter employee email"
+            disabled={isLoading}
           />
           {errors.email_address && (
             <p className="text-sm text-red-500">Email address is not valid</p>
@@ -114,6 +121,7 @@ const EmployeeForm = () => {
               id="date"
               type="date"
               {...register("date_of_joining", { required: true })}
+              disabled={isLoading}
             />
             {errors.date_of_joining && (
               <p className="text-sm text-red-500">Date of join is required</p>
@@ -122,8 +130,9 @@ const EmployeeForm = () => {
         )}
         <div className="flex justify-center">
           <button
-            className="rounded-full bg-primary px-7 py-2 text-white"
+            className="rounded-full bg-primary px-7 py-2 text-white disabled:bg-primary/60"
             type="submit"
+            disabled={isLoading}
           >
             Submit
           </button>
