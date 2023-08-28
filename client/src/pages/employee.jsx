@@ -53,7 +53,11 @@ const Employee = () => {
             </h2>
             <Link
               to="add"
-              className="rounded-full bg-primary px-5 py-3 text-sm font-medium text-white sm:text-base"
+              className={`rounded-full bg-primary px-5 py-3 text-sm font-medium text-white sm:text-base ${
+                isLoading
+                  ? "pointer-events-none cursor-not-allowed opacity-50"
+                  : ""
+              }`}
             >
               Add Employee
             </Link>

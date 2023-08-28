@@ -117,11 +117,10 @@ const EmployeeForm = () => {
               Date of Join
             </label>
             <input
-              className="rounded-md border border-dark-800/20 px-4 py-2 text-dark-900 outline-none placeholder:text-gray-300"
+              className="w-full rounded-md border border-dark-800/20 px-4 py-2 text-dark-900 outline-none placeholder:text-gray-300"
               id="date"
               type="date"
               {...register("date_of_joining", { required: true })}
-              disabled={isLoading}
             />
             {errors.date_of_joining && (
               <p className="text-sm text-red-500">Date of join is required</p>
@@ -130,7 +129,7 @@ const EmployeeForm = () => {
         )}
         <div className="flex justify-center">
           <button
-            className="rounded-full bg-primary px-7 py-2 text-white disabled:bg-primary/60"
+            className="rounded-full bg-primary px-7 py-2 text-white disabled:opacity-50"
             type="submit"
             disabled={isLoading}
           >

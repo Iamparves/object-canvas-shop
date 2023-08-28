@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import CustomerForm from "./components/CustomerForm";
 import EmployeeForm from "./components/EmployeeForm";
 import Modal from "./components/Modal";
 import Navbar from "./components/Navbar";
@@ -32,7 +33,24 @@ const App = () => {
             }
           />
         </Route>
-        <Route path="/customer" element={<Customer />} />
+        <Route path="/customer" element={<Customer />}>
+          <Route
+            path="add"
+            element={
+              <Modal>
+                <CustomerForm />
+              </Modal>
+            }
+          />
+          <Route
+            path="edit/:customerId"
+            element={
+              <Modal>
+                <CustomerForm />
+              </Modal>
+            }
+          />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
