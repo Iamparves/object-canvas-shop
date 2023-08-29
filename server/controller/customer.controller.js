@@ -1,7 +1,8 @@
 import db from "../db.js";
 
 export const getCustomers = (_req, res) => {
-  const query = "SELECT * FROM customers";
+  const query =
+    "SELECT customer_id, c.employee_id, c.code, c.name, e.name as employeeName, c.contact_no, opening_due, customer_type FROM employees e JOIN customers c ON e.employee_id = c.employee_id";
 
   db.query(query, (err, data) => {
     if (err) return res.json(err);
@@ -12,8 +13,7 @@ export const getCustomers = (_req, res) => {
 
 export const getCustomer = (req, res) => {
   const customerId = req.params.id;
-  const query =
-    "SELECT c.code, c.name, e.name as employeeName, c.contact_no, `opening_due`, `customer_type` FROM employees e JOIN customers c ON e.employee_id = c.employee_id WHERE c.customer_id = ?";
+  const query = "SELECT * FROM customers WHERE customer_id = ?";
 
   db.query(query, [customerId], (err, data) => {
     if (err) return res.json(err);
