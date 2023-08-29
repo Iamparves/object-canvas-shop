@@ -13,7 +13,7 @@ export const getCustomers = (_req, res) => {
 export const getCustomer = (req, res) => {
   const customerId = req.params.id;
   const query =
-    "SELECT c.code, c.name, e.name as employeeName, c.contact_no, `opening_due`, `customer_type` FROM employees e JOIN customers c ON e.employee_id = c.customer_id WHERE c.customer_id = ?";
+    "SELECT c.code, c.name, e.name as employeeName, c.contact_no, `opening_due`, `customer_type` FROM employees e JOIN customers c ON e.employee_id = c.employee_id WHERE c.customer_id = ?";
 
   db.query(query, [customerId], (err, data) => {
     if (err) return res.json(err);
