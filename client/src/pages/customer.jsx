@@ -72,6 +72,7 @@ const Customer = () => {
                   <th>Contact No.</th>
                   <th>Opening Due</th>
                   <th>Customer Type</th>
+                  <th>Employee</th>
                   <th>Actions</th>
                 </tr>
               </thead>

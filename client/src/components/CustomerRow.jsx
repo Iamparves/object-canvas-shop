@@ -4,8 +4,14 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const CustomerRow = ({ customer, index, onDeleteCustomer }) => {
-  const { customer_id, name, contact_no, opening_due, customer_type } =
-    customer;
+  const {
+    customer_id,
+    name,
+    contact_no,
+    opening_due,
+    customer_type,
+    employeeName,
+  } = customer;
   return (
     <tr>
       <td>{index}</td>
@@ -13,6 +19,7 @@ const CustomerRow = ({ customer, index, onDeleteCustomer }) => {
       <td>{contact_no}</td>
       <td>{opening_due}</td>
       <td>{customer_type}</td>
+      <td>{employeeName}</td>
       <td className="flex gap-1 text-white">
         <Link
           to={`edit/${customer_id}`}
