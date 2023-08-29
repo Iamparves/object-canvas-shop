@@ -166,26 +166,28 @@ const CustomerForm = () => {
             <option value="Hire">Hire</option>
           </select>
         </div>
-        <div className="mb-5 flex flex-col gap-1">
-          <label
-            htmlFor="associatedEmployee"
-            className="text-sm font-medium text-gray-400"
-          >
-            Associated Employee
-          </label>
-          <select
-            id="associatedEmployee"
-            {...register("employee_id")}
-            className="rounded-md border border-dark-800/20 px-4 py-2 text-dark-900 outline-none"
-            disabled={isDisabled}
-          >
-            {employees?.map((employee) => (
-              <option key={employee.employee_id} value={employee.employee_id}>
-                {employee.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        {!customerId && (
+          <div className="mb-5 flex flex-col gap-1">
+            <label
+              htmlFor="associatedEmployee"
+              className="text-sm font-medium text-gray-400"
+            >
+              Associated Employee
+            </label>
+            <select
+              id="associatedEmployee"
+              {...register("employee_id")}
+              className="rounded-md border border-dark-800/20 px-4 py-2 text-dark-900 outline-none"
+              disabled={isDisabled}
+            >
+              {employees?.map((employee) => (
+                <option key={employee.employee_id} value={employee.employee_id}>
+                  {employee.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         <div className="flex justify-center">
           <button
             className="rounded-full bg-primary px-7 py-2 text-white disabled:opacity-50"
