@@ -65,6 +65,7 @@ export const getCustomerById = async (id) => {
 
 export const addCustomer = async (newCustomer) => {
   const code = generateUniqueCode();
+
   const response = await fetch(`${baseUri}/customers`, {
     method: "POST",
     headers: {

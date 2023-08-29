@@ -22,10 +22,16 @@ const Customer = () => {
     setIsLoading(false);
   };
 
-  const onDeleteCustomer = async (customerId) => {
+  const onDeleteCustomer = async (customerId, customerName) => {
     try {
-      await deleteCustomer(customerId);
-      loadAllCustomers();
+      const confirmDelete = window.confirm(
+        `Are you sure to delete customer "${customerName}"?`,
+      );
+
+      if (confirmDelete) {
+        await deleteCustomer(customerId);
+        loadAllCustomers();
+      }
     } catch (error) {
       console.log(error);
     }

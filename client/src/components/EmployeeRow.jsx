@@ -29,7 +29,7 @@ const EmployeeRow = ({ employee, index, onDeleteEmployee }) => {
         </Link>
         <button
           className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-[#FF4C60] text-lg"
-          onClick={() => onDeleteEmployee(employee_id)}
+          onClick={() => onDeleteEmployee(employee_id, name)}
         >
           <MdDelete />
         </button>

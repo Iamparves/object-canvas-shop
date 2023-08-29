@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -32,7 +32,13 @@ const CustomerForm = () => {
 
         return { name, contact_no, opening_due, customer_type };
       } else {
-        return {};
+        const data = await getEmployees();
+        setEmployees(data);
+        setIsEmployeeFetching(false);
+
+        return {
+          employee_id: data[0]?.employee_id,
+        };
       }
     },
   });
@@ -53,21 +59,6 @@ const CustomerForm = () => {
 
     navigate("..", { state: { reload: true } });
   };
-
-  useEffect(() => {
-    const loadAllEmployees = async () => {
-      try {
-        const data = await getEmployees();
-        setEmployees(data);
-      } catch (error) {
-        console.log(error);
-      }
-
-      setIsEmployeeFetching(false);
-    };
-
-    loadAllEmployees();
-  }, []);
 
   return (
     <div>

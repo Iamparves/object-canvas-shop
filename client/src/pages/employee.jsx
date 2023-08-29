@@ -22,10 +22,16 @@ const Employee = () => {
     setIsLoading(false);
   };
 
-  const onDeleteEmployee = async (employeeId) => {
+  const onDeleteEmployee = async (employeeId, employeeName) => {
     try {
-      await deleteEmployee(employeeId);
-      loadAllEmployees();
+      const confirmDelete = window.confirm(
+        `Are you sure to delete employee "${employeeName}"?`,
+      );
+
+      if (confirmDelete) {
+        await deleteEmployee(employeeId);
+        loadAllEmployees();
+      }
     } catch (error) {
       console.log(error);
     }

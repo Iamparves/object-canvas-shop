@@ -29,7 +29,7 @@ const CustomerRow = ({ customer, index, onDeleteCustomer }) => {
         </Link>
         <button
           className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-[#FF4C60] text-lg"
-          onClick={() => onDeleteCustomer(customer_id)}
+          onClick={() => onDeleteCustomer(customer_id, name)}
         >
           <MdDelete />
         </button>
